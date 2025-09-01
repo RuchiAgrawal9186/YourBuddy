@@ -3,7 +3,8 @@ import { IconMicrophone } from "@tabler/icons-react";
 import speak from "./assets/speak.gif";
 import logo from "./assets/logo1.gif";
 import "./App.css";
-import { userContext } from "./context/userContext";
+import { sppechContext } from "./context/SpeeachContext";
+
 
 function App() {
   const {
@@ -14,7 +15,7 @@ function App() {
     Response,
     setPrompt,
     setAiResponse,
-  } = useContext(userContext);
+  } = useContext(sppechContext);
   const handleClick = () => {
     setAiResponse(false);
     setPrompt("Listening...");
