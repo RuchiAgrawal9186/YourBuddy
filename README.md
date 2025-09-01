@@ -5,12 +5,13 @@ YourBuddy is a React-based voice assistant powered by Google Gemini API.
 It listens to your voice, sends the query to Gemini (gemini-2.5-flash), and speaks the response back using the browser’s Speech Recognition and Speech Synthesis APIs.
 
 # 🚀 Features
-
+```
 🎤 Voice Input: Speak your query using the microphone.
 🤖 AI Response: Gets concise answers from Google Gemini API.
 🔊 Voice Output: Speaks the response back to you.
 ✂️ Cleaned Output: Removes markdown (**bold**) and limits long responses.
 🌐 Deployed on Vercel with .env support for API keys.
+```
 
 # 🛠️ Tech Stack
 
