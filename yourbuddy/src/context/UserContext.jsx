@@ -23,23 +23,30 @@ const UserContext = ({ children }) => {
     window.speechSynthesis.speak(text_speak);
   };
 
+  function cleanText(text) {
+    return text
+      .replace(/\*\*/g, "") // remove bold
+      .replace(/\*/g, "") // remove italic
+      .replace(/#+/g, "") // remove headings
+      .replace(/google/gi, "Ruchi Agrawal")
+      .trim();
+  }
+
   async function aiResponse(prompt) {
-    console.log("promot", prompt);
-      let text = await run(prompt);
-      if (!text)
-      {
-          return
-          }
-    // replace all "google" with "Ruchi Agrawal"
-    // let newtext = text.replace(/google/gi, "Ruchi Agrawal");
-      
+ 
+    let text = await run(prompt);
+
+    let clean = cleanText(text);
+
+    // Keep only first sentence
+    let shortText = clean.split(".")[0] + ".";
+
+
     setAiResponse(true);
-    setPrompt(text);
-    speak(text);
+    setPrompt(shortText);
+    speak(shortText);
 
-    
-    //   takeCommand(newtext?.toLowerCase());
-
+  
     setTimeout(() => {
       setSpeaking(false);
     }, 5000);
@@ -52,9 +59,10 @@ const UserContext = ({ children }) => {
   recognition.onresult = (e) => {
     let cuurentIndex = e?.resultIndex;
     let transcript = e?.results?.[cuurentIndex]?.[0]?.transcript;
-    console.log(transcript, "transcript");
     setPrompt(transcript);
-    aiResponse(transcript);
+    
+    // Avoid unhandled async promise
+  aiResponse(transcript).catch((err) => console.error(err));
   };
 
   const value = {
