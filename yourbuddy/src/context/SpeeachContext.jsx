@@ -74,7 +74,7 @@ const SpeeachContext = ({ children }) => {
   };
   return (
     <div>
-      <userContext.Provider value={value}>{children}</userContext.Provider>
+      <sppechContext.Provider value={value}>{children}</sppechContext.Provider>
     </div>
   );
 };
